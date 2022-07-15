@@ -3,7 +3,7 @@ const email = document.getElementById('email');
 const country = document.getElementById('country');
 const zip = document.getElementById('zip');
 const password = document.getElementById('password');
-const confirm = document.getElementById('confirm');
+const confirmm = document.getElementById('confirm');
 const emailError = document.getElementById('emailerror');
 const countryError = document.getElementById('countryerror');
 const zipError = document.getElementById('ziperror');
@@ -17,6 +17,14 @@ const countryList = [
 
 const validation = (() => {
     const checkEmail = () => {
+        if (email.value.length < 8) {
+            email.setCustomValidity('Invalid Field.');
+            emailError.textContent = 'Email must be more than 8 characters';
+            return false;
+        }
+        email.setCustomValidity('');
+        emailError.textContent = '';
+        return true;
     }
     const checkZip = () => {
         if (zip.value.length !== 4 || !/\d{4}/.test(zip.value)) {
@@ -28,7 +36,34 @@ const validation = (() => {
         zipError.textContent = '';
         return true;
     }
-    return {checkEmail, checkZip};
+    const checkPassword = () => {   
+            if (!/.{8,}/.test(password.value)) {
+                password.setCustomValidity('Invalid Field.');
+                passwordError.textContent = 'Password must be at least 8 characters';
+                return false;
+            } else if (!/(?=.*\d)/.test(password.value)) {
+                password.setCustomValidity('Invalid Field.');
+                passwordError.textContent = 'Password must contain a number';
+                return false;
+            } else {
+                confirmPassword(); 
+                password.setCustomValidity('');
+                passwordError.textContent = '';
+                return true;
+            }
+    }
+    const confirmPassword = () => {
+        if (password.value !== confirmm.value) {
+            confirmm.setCustomValidity('Invalid Field.');
+            confirmError.textContent = 'Passwords do not match';
+            return false;
+        } else {
+            confirmm.setCustomValidity('');
+            confirmError.textContent = '';
+            return true;
+        }
+    }
+    return {checkEmail, checkZip, checkPassword, confirmPassword};
 })();
 
 (() => {
@@ -39,5 +74,18 @@ const validation = (() => {
         country.appendChild(newCountry);
     }
     zip.addEventListener('input', validation.checkZip);
-    // email.setCustomValidity('Invalid Field.');
+    email.addEventListener('input', validation.checkEmail);
+    password.addEventListener('input', validation.checkPassword);
+    confirmm.addEventListener('input', validation.confirmPassword);
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let message = document.getElementById('submitmessage');
+        if (!validation.checkZip() || !validation.checkEmail() || !country.value || !validation.checkPassword() || !validation.confirmPassword()) {
+            message.classList.remove('success');
+            message.textContent = 'Please fill out all fields correctly';
+        } else {
+            message.classList.add('success');
+            message.textContent = 'Congratulations! Clap Clap';
+        }
+    })
 })();

@@ -36,6 +36,14 @@ input {
     font-size: 0.8rem;
 }
 
+.success {
+    color: green;
+}
+
+#submitmessage {
+    justify-self: center;
+}
+
 input[type="submit"] {
     margin-top: 20px;
     width: 150px;
