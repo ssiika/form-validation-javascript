@@ -1,0 +1,58 @@
+body {
+    background-color: #1F2937;
+    display: grid;
+    justify-content: center;
+    font-family: Roboto sans-serif;
+}
+
+.content {
+    width: 400px;
+    height: 550px;
+    background-color: white;
+    margin-top: 100px;
+    padding: 50px 100px;
+    box-sizing: border-box;
+}
+
+form {
+    display: grid;
+    gap: 20px;
+}
+
+label {
+    display: grid;
+    gap: 5px;
+    height: 60px;
+    align-content: start;
+}
+
+input {
+    border: 1px solid black;
+    height: 25px;
+}
+
+.error {
+    color: red;
+    font-size: 0.8rem;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+    width: 150px;
+    justify-self: center;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    color: green;
+}
+
+input:focus {
+    outline: none;
+}
+
+input:invalid {
+    border: 1px solid red;
+}

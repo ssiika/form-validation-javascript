@@ -8,6 +8,37 @@
     <title>Javascript Form Validation</title>
 </head>
 <body>
-    
+    <div class="content">
+        <form class="form" novalidate>
+            <label for="email">
+                E-mail
+                <input name="email" id="email" type="email">
+                <span class="error" id="emailerror"></span>
+            </label>
+            <label for="country">
+                Country
+                <select name="country" id="country">
+                    <option value="" selected>Please select a country</option>
+                </select>       
+                <span class="error" id="countryerror"></span>
+            </label>
+            <label for="zip">
+                Zip-code
+                <input name="zip" id="zip" type="text">
+                <span class="error" id="ziperror"></span>
+            </label>
+            <label for="password">
+                Password
+                <input name="password" id="password" type="password">
+                <span class="error" id="passworderror"></span>
+            </label>
+            <label for="confirm">
+                Confirm Password
+                <input name="confirm" id="confirm" type="text">
+                <span class="error" id="confirmerror"></span>
+            </label>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>
